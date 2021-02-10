@@ -1,13 +1,26 @@
-import React, { Component } from 'react'
-import App from 'base-shell/lib'
-import MUIConfig from 'material-ui-shell/lib'
-import merge from 'base-shell/lib/utils/config'
-import _config from './config'
+import React from 'react';
+import { Grid } from '@material-ui/core';
 
-const config = merge(MUIConfig, _config)
+import Header from './Header';
+import Content from './Content';
 
-export default class Demo extends Component {
-  render() {
-    return <App config={config} />
-  }
-}
+const App = () => {
+  return (
+    <div>
+      <Header />
+      <Grid container>
+        <Grid item xs={1}>
+          Left
+        </Grid>
+        <Grid item container xs={10} spacing={2}>
+          <Content></Content>
+        </Grid>
+        <Grid item xs={1}>
+          Right
+        </Grid>
+      </Grid>
+    </div>
+  );
+};
+
+export default App;
