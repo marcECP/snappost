@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 export default function Post(props) {
   const classes = useStyles();
 
-  const { title, date, content } = props;
+  const { id, title, date, content, clickDelete } = props;
 
   return (
     <Card className={classes.root}>
@@ -40,7 +40,7 @@ export default function Post(props) {
           <Typography variant="h5" component="h2" className={classes.title}>
             {title}
           </Typography>
-          <IconButton>
+          <IconButton onClick={() => clickDelete(id)}>
             <DeleteIcon />
           </IconButton>
         </CardActions>
