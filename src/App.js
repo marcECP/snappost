@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Grid } from '@material-ui/core';
 
 import Header from './Header';
-import Content from './Content';
+import CardsContainer from './Cards-container';
 
 const initialPosts = [
   {
@@ -32,23 +32,25 @@ const App = () => {
   const [posts, setPosts] = useState(initialPosts);
 
   const clickDelete = (id) => {
-    console.log(posts.filter((post) => post.id !== id));
     setPosts(posts.filter((post) => post.id !== id));
+  };
+
+  const clickSubmit = (e, title, content) => {
+    e.preventDefault();
+    const id = Math.floor(Math.random() * 100);
+    const post = { id, title, content };
+    setPosts([...posts, post]);
   };
 
   return (
     <div>
       <Header />
       <Grid container>
-        <Grid item xs={1}>
-          Left
-        </Grid>
-        <Grid item container xs={10} spacing={2}>
-          <Content posts={posts} clickDelete={clickDelete} />
-        </Grid>
-        <Grid item xs={1}>
-          Right
-        </Grid>
+        <CardsContainer
+          posts={posts}
+          clickDelete={clickDelete}
+          clickSubmit={clickSubmit}
+        />
       </Grid>
     </div>
   );
